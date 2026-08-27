@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Наш "В" класс — Школа 160</title>
+<meta name="description" content="Сайт нашего «В» класса школы № 160 с углублённым изучением английского языка. Учителя, галерея, школьная жизнь.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-hover: #eaeaef;
+    --border: #dddde5;
+    --text: #111118;
+    --text-muted: #6b6b80;
+    --accent: #7c5ce0;
+    --accent-glow: rgba(124, 92, 224, 0.15);
+    --pink: #d946a8;
+    --pink-glow: rgba(217, 70, 168, 0.15);
+    --amber: #d4990a;
+    --amber-glow: rgba(212, 153, 10, 0.15);
+    --blue: #3b82f6;
+    --card-shadow: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+    --bg: #050508;
+    --surface: #0f0f14;
+    --surface-hover: #1a1a24;
+    --border: #1e1e2a;
+    --text: #f0f0f5;
+    --text-muted: #8888a0;
+    --accent: #a78bfa;
+    --accent-glow: rgba(167, 139, 250, 0.25);
+    --pink: #f472b6;
+    --pink-glow: rgba(244, 114, 182, 0.25);
+    --amber: #fbbf24;
+    --amber-glow: rgba(251, 191, 36, 0.25);
+    --blue: #60a5fa;
+    --card-shadow: rgba(0,0,0,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Unbounded',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s;min-height:100vh;overflow-x:hidden}
+/* фоновые цветовые пятна как у Евлампии */
+body::before, body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:0}
+body::before{background:radial-gradient(ellipse at top right,rgba(124,92,224,0.10) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(217,70,168,0.08) 0%,transparent 55%)}
+[data-theme="dark"] body::before{background:radial-gradient(ellipse at top right,rgba(167,139,250,0.08) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(244,114,182,0.06) 0%,transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:20px}
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:14px 20px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1rem;margin-right:auto;white-space:nowrap;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav a{color:var(--text-muted);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:500;font-size:.85rem;transition:.2s}
+.nav a:hover{color:var(--text);background:var(--surface-hover)}
+.nav a.active{color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink))}
+.theme-btn{cursor:pointer;background:var(--surface-hover);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:10px;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.theme-btn:hover{transform:rotate(-12deg)}
+main{padding:10px 0 60px}
+.hero{text-align:center;padding:60px 20px 24px}
+.badge{display:inline-block;background:var(--accent-glow);color:var(--accent);border:1px solid var(--border);padding:8px 16px;border-radius:999px;font-size:.75rem;font-weight:600;margin-bottom:24px;letter-spacing:.3px}
+.hero h1{font-size:2.6rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,var(--accent) 0%,var(--pink) 60%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.desc{color:var(--text-muted);max-width:620px;margin:20px auto 0;font-size:.95rem;font-weight:300}
+.notice{background:var(--surface);border:1px solid var(--amber);border-left:4px solid var(--amber);color:var(--text);padding:14px 18px;border-radius:12px;text-align:center;font-size:.8rem;margin:0 auto 10px;max-width:720px;box-shadow:0 4px 20px var(--card-shadow)}
+.notice b{color:var(--amber)}
+.quick{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:44px 0 10px}
+.qcard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 26px;min-width:250px;text-decoration:none;color:var(--text);box-shadow:0 4px 20px var(--card-shadow);transition:transform .25s,box-shadow .25s;text-align:left;position:relative;overflow:hidden}
+.qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,var(--pink-glow) 0%,transparent 70%);opacity:0;transition:.3s}
+.qcard:hover{transform:translateY(-6px)}
+.qcard:hover::before{opacity:1}
+.qcard .ic{font-size:1.6rem}
+.qcard h3{margin:12px 0 6px;font-size:.95rem;font-weight:600;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.qcard p{color:var(--text-muted);font-size:.75rem;font-weight:300;margin:0}
+.links{display:flex;flex-direction:column;gap:14px;max-width:600px;margin:34px auto 0;text-align:left}
+.link{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--text);box-shadow:0 4px 20px var(--card-shadow);transition:.2s;position:relative;overflow:hidden}
+.link::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),var(--pink))}
+.link:hover{border-color:var(--accent);transform:translateX(4px)}
+.link .ic{font-size:1.3rem}
+.link .lbl{font-size:.85rem;font-weight:500}
+.link .arrow{margin-left:auto;color:var(--accent)}
+h2.sec{font-size:1.5rem;margin:52px 0 10px;text-align:center;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.sec-sub{text-align:center;color:var(--text-muted);margin-bottom:26px;max-width:640px;margin-left:auto;margin-right:auto;font-size:.8rem;font-weight:300}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+.divider{height:1px;max-width:600px;margin:0 auto;background:linear-gradient(90deg,transparent,var(--border),transparent)}
+.spoiler{max-width:600px;margin:34px auto 0;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 4px 20px var(--card-shadow);overflow:hidden}
+.spoiler-btn{width:100%;display:flex;align-items:center;gap:12px;background:none;border:none;color:var(--amber);padding:16px 20px;font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;text-align:left}
+.spoiler-btn .arrow{margin-left:auto;transition:transform .3s;color:var(--text-muted)}
+.spoiler.open .spoiler-btn .arrow{transform:rotate(180deg)}
+.spoiler-body{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--text-muted);font-size:.72rem;font-weight:300;line-height:1.8}
+.spoiler.open .spoiler-body{max-height:400px;padding:0 20px 18px}
+footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
+footer a{color:var(--accent);text-decoration:none}
+.copyright{margin-top:8px;font-size:.7rem;opacity:.7}
+@media(max-width:640px){
+  .hero h1{font-size:1.9rem}
+  .nav a{padding:7px 9px;font-size:.75rem}
+  .qcard{min-width:100%}
+}
+</style>
+<script>
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  var next=cur==='dark'?'':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('class-theme',next||'light')}catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var b=document.getElementById('themeBtn');
+  b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
+  updateThemeIcon();
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el)});
+});
+</script>
+</head>
+<body>
+<header class="top">
+  <nav class="nav">
+    <div class="brand">Наш "В" класс</div>
+    <a href="index.html" class="active">Главная</a>
+    <a href="teachers.html">Учителя</a>
+    <a href="gallery.html">Галерея</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Тема">🌙</button>
+  </nav>
+</header>
+
+<div class="wrap">
+  <main>
+    <div class="notice reveal"><b>⚠️</b> Работа старого сайта прекращена — 27 августа</div>
+
+    <section class="hero reveal">
+      <div class="badge">Школа №160 · углублённое изучение английского</div>
+      <h1>Наш "В" класс</h1>
+      <p class="desc">Это сайт нашего дружного класса. Здесь — наши учителя, фотографии и самые тёплые воспоминания.</p>
+    </section>
+
+    <div class="quick reveal">
+      <a class="qcard" href="teachers.html">
+        <div class="ic">🧑‍🏫</div>
+        <h3>Учителя</h3>
+        <p>Наши учителя и классные руководители</p>
+      </a>
+      <a class="qcard" href="gallery.html">
+        <div class="ic">📸</div>
+        <h3>Галерея</h3>
+        <p>Фотографии с праздников и поездок</p>
+      </a>
+    </div>
+
+    <div class="divider reveal"></div>
+
+    <h2 class="sec reveal">Важные ссылки</h2>
+    <div class="links reveal">
+      <a class="link" href="https://www.gou160.ru/ru" target="_blank" rel="noopener">
+        <span class="ic">🏫</span><span class="lbl">Сайт школы</span><span class="arrow">→</span>
+      </a>
+      <a class="link" href="https://www.gou160.ru/images/Svedeniia_ob_obrazovatelnoi_organizatcii/Dokumenty/2024-2025/_о_правилах_внутреннего_распорядка_.pdf" target="_blank" rel="noopener">
+        <span class="ic">📜</span><span class="lbl">Правила внутреннего распорядка школы</span><span class="arrow">→</span>
+      </a>
+    </div>
+
+    <div class="spoiler reveal">
+      <button class="spoiler-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span class="lbl">⚠️ Видеоматериалы на YouTube — внимание</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="spoiler-body">
+        Внимание, все видеоматериалы представлены на платформе YouTube. Используйте VPN и другие сервисы.<br><br>
+        Автор сайта не навязывает использование обходов блокировки сервиса YouTube на территории РФ.<br><br>
+        Пользователь сам принимает решение использовать вышеупомянутый сервис или нет.
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© Мудрук Олег, 2025</div>
+    <div class="copyright">Сделано с ❤️ для нашего класса</div>
+  </footer>
+</div>
+</body>
+</html>

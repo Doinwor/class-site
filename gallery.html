@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Галерея — Наш "В" класс</title>
+<meta name="description" content="Фотографии нашего «В» класса: праздники, поездки и школьная жизнь.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-hover: #eaeaef;
+    --border: #dddde5;
+    --text: #111118;
+    --text-muted: #6b6b80;
+    --accent: #7c5ce0;
+    --accent-glow: rgba(124, 92, 224, 0.15);
+    --pink: #d946a8;
+    --pink-glow: rgba(217, 70, 168, 0.15);
+    --amber: #d4990a;
+    --amber-glow: rgba(212, 153, 10, 0.15);
+    --blue: #3b82f6;
+    --card-shadow: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+    --bg: #050508;
+    --surface: #0f0f14;
+    --surface-hover: #1a1a24;
+    --border: #1e1e2a;
+    --text: #f0f0f5;
+    --text-muted: #8888a0;
+    --accent: #a78bfa;
+    --accent-glow: rgba(167, 139, 250, 0.25);
+    --pink: #f472b6;
+    --pink-glow: rgba(244, 114, 182, 0.25);
+    --amber: #fbbf24;
+    --amber-glow: rgba(251, 191, 36, 0.25);
+    --blue: #60a5fa;
+    --card-shadow: rgba(0,0,0,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Unbounded',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at top right,rgba(124,92,224,0.10) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(217,70,168,0.08) 0%,transparent 55%)}
+[data-theme="dark"] body::before{background:radial-gradient(ellipse at top right,rgba(167,139,250,0.08) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(244,114,182,0.06) 0%,transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:20px}
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:14px 20px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1rem;margin-right:auto;white-space:nowrap;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav a{color:var(--text-muted);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:500;font-size:.85rem;transition:.2s}
+.nav a:hover{color:var(--text);background:var(--surface-hover)}
+.nav a.active{color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink))}
+.theme-btn{cursor:pointer;background:var(--surface-hover);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:10px;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.theme-btn:hover{transform:rotate(-12deg)}
+main{padding:10px 0 60px}
+.page-head{text-align:center;padding:48px 20px 10px}
+.page-head h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent) 0%,var(--pink) 60%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.page-head p{color:var(--text-muted);margin-top:12px;font-size:.85rem;font-weight:300}
+.notice{background:var(--surface);border:1px solid var(--amber);border-left:4px solid var(--amber);color:var(--text);padding:14px 18px;border-radius:12px;text-align:center;font-size:.75rem;margin:30px auto 10px;max-width:760px;box-shadow:0 4px 20px var(--card-shadow)}
+.notice b{color:var(--amber)}
+.spoiler{max-width:760px;margin:30px auto 10px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 4px 20px var(--card-shadow);overflow:hidden}
+.vsec{font-size:1.3rem;text-align:center;margin:52px 0 24px;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.vblock{max-width:720px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.seret{background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 4px 20px var(--card-shadow);overflow:hidden}
+.seret-btn{width:100%;display:flex;align-items:center;gap:10px;background:none;border:none;color:var(--text);padding:16px 20px;font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:600;cursor:pointer;text-align:left}
+.seret-btn .sarrow{margin-left:auto;transition:transform .3s;color:var(--text-muted)}
+.seret.open .seret-btn .sarrow{transform:rotate(180deg)}
+.seret-body{max-height:0;overflow:hidden;transition:max-height .5s ease}
+.seret.open .seret-body{max-height:1200px;padding:0 20px 20px;display:flex;flex-direction:column;gap:16px}
+.video-wrap{position:relative;width:100%;padding-top:56.25%;border-radius:12px;overflow:hidden;background:#000}
+.video-wrap iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.spoiler-btn{width:100%;display:flex;align-items:center;gap:12px;background:none;border:none;color:var(--amber);padding:16px 20px;font-family:'Unbounded',sans-serif;font-size:.78rem;font-weight:600;cursor:pointer;text-align:left}
+.spoiler-btn .arrow{margin-left:auto;transition:transform .3s;color:var(--text-muted)}
+.spoiler.open .spoiler-btn .arrow{transform:rotate(180deg)}
+.spoiler-body{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--text-muted);font-size:.72rem;font-weight:300;line-height:1.8}
+.spoiler.open .spoiler-body{max-height:400px;padding:0 20px 18px}
+.gallery{display:flex;flex-wrap:wrap;gap:20px;justify-content:center;margin-top:34px}
+.gitem{background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;width:310px;box-shadow:0 4px 20px var(--card-shadow);transition:transform .25s,box-shadow .25s;display:flex;flex-direction:column;position:relative}
+.gitem:hover{transform:translateY(-6px)}
+.ph{height:170px;background:linear-gradient(135deg,var(--accent-glow),var(--pink-glow));display:flex;align-items:center;justify-content:center;font-size:2.4rem;color:var(--accent)}
+.gimg{width:100%;height:auto;display:block;object-fit:cover}
+.gitem .body{padding:18px;display:flex;flex-direction:column;flex:1}
+.gitem h3{font-size:.85rem;color:var(--text);margin:0;font-weight:600}
+.gitem .date{color:var(--text-muted);font-size:.7rem;margin-top:6px;font-weight:300}
+.gitem a.btn{margin-top:auto;display:inline-block;background:linear-gradient(90deg,var(--accent),var(--pink));color:#fff;text-decoration:none;padding:10px 16px;border-radius:12px;font-size:.75rem;font-weight:600;text-align:center;margin-top:16px;transition:.2s}
+.gitem a.btn:hover{filter:brightness(1.1)}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
+.copyright{margin-top:8px;font-size:.7rem;opacity:.7}
+@media(max-width:640px){
+  .gitem{width:100%}
+  .nav a{padding:7px 9px;font-size:.75rem}
+  .page-head h1{font-size:1.7rem}
+}
+</style>
+<script>
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  var next=cur==='dark'?'':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('class-theme',next||'light')}catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var b=document.getElementById('themeBtn');
+  b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
+  updateThemeIcon();
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el)});
+});
+</script>
+</head>
+<body>
+<header class="top">
+  <nav class="nav">
+    <div class="brand">Наш "В" класс</div>
+    <a href="index.html">Главная</a>
+    <a href="teachers.html">Учителя</a>
+    <a href="gallery.html" class="active">Галерея</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Тема">🌙</button>
+  </nav>
+</header>
+
+<div class="wrap">
+  <main>
+    <section class="page-head reveal">
+      <h1>Галерея класса</h1>
+      <p>Наши фотографии — праздники, поездки и школьные будни</p>
+    </section>
+
+    <div class="spoiler reveal">
+      <button class="spoiler-btn" onclick="this.parentElement.classList.toggle('open')">
+        <span class="lbl">⚠️ Видеоматериалы на YouTube — внимание</span>
+        <span class="arrow">▾</span>
+      </button>
+      <div class="spoiler-body">
+        Внимание, все видеоматериалы представлены на платформе YouTube. Используйте VPN и другие сервисы.<br><br>
+        Автор сайта не навязывает использование обходов блокировки сервиса YouTube на территории РФ.<br><br>
+        Пользователь сам принимает решение использовать вышеупомянутый сервис или нет.
+      </div>
+    </div>
+
+    <div class="gallery reveal">
+      <div class="gitem">
+        <div class="ph">📷</div>
+        <div class="body">
+          <h3>Фото в кабинете 28</h3>
+          <div class="date">1 сентября 2025</div>
+          <a class="btn" href="#">Смотреть фото</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph" style="height:auto;display:block;background:none;padding:0"><img class="gimg" src="img/teachers/gallery_sep.jpg" alt="Фотосессия 1 сентября, 5 класс"></div>
+        <div class="body">
+          <h3>Фотосессия 1 сентября</h3>
+          <div class="date">5 класс</div>
+          <a class="btn" href="#">Смотреть фото</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">🎓</div>
+        <div class="body">
+          <h3>Конец 6 класса</h3>
+          <div class="date">23 мая 2024</div>
+          <a class="btn" href="https://cloud.mail.ru/public/pq4V/b9B7W4GnD" target="_blank" rel="noopener">Открыть в Mail.ru</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">📸</div>
+        <div class="body">
+          <h3>Фотосессия</h3>
+          <div class="date">Май 2023</div>
+          <a class="btn" href="https://disk.yandex.ru/d/HE5VOCi-Icroig" target="_blank" rel="noopener">Открыть в Яндекс.Диске</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">🏫</div>
+        <div class="body">
+          <h3>Фото в кабинете 28</h3>
+          <div class="date">1 сентября 2022</div>
+          <a class="btn" href="#">Смотреть фото</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">🌷</div>
+        <div class="body">
+          <h3>Фотосессия</h3>
+          <div class="date">Апрель 2022</div>
+          <a class="btn" href="https://drive.google.com/drive/folders/1eK9ew0eJlFv4UTy5FP6ehMc8GhsD-sm-" target="_blank" rel="noopener">Открыть в Google Диске</a>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">🎄</div>
+        <div class="body">
+          <h3>Новый год</h3>
+          <div class="date">Декабрь 2021</div>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">📚</div>
+        <div class="body">
+          <h3>Библиотека</h3>
+          <div class="date">Май 2022</div>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">⛺</div>
+        <div class="body">
+          <h3>Токсово</h3>
+          <div class="date">22 мая 2018</div>
+        </div>
+      </div>
+
+      <div class="gitem">
+        <div class="ph">🎒</div>
+        <div class="body">
+          <h3>1 Сентября</h3>
+          <div class="date">2018 год</div>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="vsec reveal">Наши видео</h2>
+
+    <div class="vblock reveal">
+      <div class="seret" data-toggle data-open>
+        <button class="seret-btn" onclick="this.parentElement.classList.toggle('open')">▶ Видео · Токсово 2018 <span class="sarrow">▾</span></button>
+        <div class="seret-body">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/Lk6CzVf_0NY" title="Токсово 2018" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+
+      <div class="seret" data-toggle>
+        <button class="seret-btn" onclick="this.parentElement.classList.toggle('open')">▶ Видео · 1 Сентября 2018 <span class="sarrow">▾</span></button>
+        <div class="seret-body">
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/TPpTf7t5rRQ" title="1 Сентября 2018" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/grxDh8dYgAY" title="1 Сентября 2018" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <div class="video-wrap">
+            <iframe src="https://www.youtube.com/embed/GWp7u45yJLM" title="1 Сентября 2018" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div>© Мудрук Олег, 2025</div>
+    <div class="copyright">Сделано с ❤️ для нашего класса</div>
+  </footer>
+</div>
+</body>
+</html>

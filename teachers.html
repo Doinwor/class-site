@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Учителя — Наш "В" класс</title>
+<meta name="description" content="Учителя нашего «В» класса школы № 160: старшая и начальная школа.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+
+:root {
+    --bg: #f5f5f7;
+    --surface: #ffffff;
+    --surface-hover: #eaeaef;
+    --border: #dddde5;
+    --text: #111118;
+    --text-muted: #6b6b80;
+    --accent: #7c5ce0;
+    --accent-glow: rgba(124, 92, 224, 0.15);
+    --pink: #d946a8;
+    --pink-glow: rgba(217, 70, 168, 0.15);
+    --amber: #d4990a;
+    --amber-glow: rgba(212, 153, 10, 0.15);
+    --blue: #3b82f6;
+    --card-shadow: rgba(0,0,0,0.06);
+}
+[data-theme="dark"] {
+    --bg: #050508;
+    --surface: #0f0f14;
+    --surface-hover: #1a1a24;
+    --border: #1e1e2a;
+    --text: #f0f0f5;
+    --text-muted: #8888a0;
+    --accent: #a78bfa;
+    --accent-glow: rgba(167, 139, 250, 0.25);
+    --pink: #f472b6;
+    --pink-glow: rgba(244, 114, 182, 0.25);
+    --amber: #fbbf24;
+    --amber-glow: rgba(251, 191, 36, 0.25);
+    --blue: #60a5fa;
+    --card-shadow: rgba(0,0,0,0.3);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Unbounded',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;transition:background .3s,color .3s;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at top right,rgba(124,92,224,0.10) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(217,70,168,0.08) 0%,transparent 55%)}
+[data-theme="dark"] body::before{background:radial-gradient(ellipse at top right,rgba(167,139,250,0.08) 0%,transparent 55%),radial-gradient(ellipse at bottom left,rgba(244,114,182,0.06) 0%,transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:1080px;margin:0 auto;padding:20px}
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{max-width:1080px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:14px 20px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1rem;margin-right:auto;white-space:nowrap;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.nav a{color:var(--text-muted);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:500;font-size:.85rem;transition:.2s}
+.nav a:hover{color:var(--text);background:var(--surface-hover)}
+.nav a.active{color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink))}
+.theme-btn{cursor:pointer;background:var(--surface-hover);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:10px;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.theme-btn:hover{transform:rotate(-12deg)}
+main{padding:10px 0 60px}
+.page-head{text-align:center;padding:48px 20px 10px}
+.page-head h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent) 0%,var(--pink) 60%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.page-head p{color:var(--text-muted);margin-top:12px;font-size:.85rem;font-weight:300}
+.stage{margin:36px 0 44px}
+.stage h2{font-size:1.3rem;text-align:center;margin-bottom:24px;padding-bottom:12px;color:var(--text);position:relative}
+.stage h2::after{content:"";display:block;width:80px;height:2px;margin:10px auto 0;background:linear-gradient(90deg,var(--accent),var(--pink),var(--amber))}
+.teachers{display:flex;flex-wrap:wrap;gap:18px;justify-content:center}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+.split-col h2{font-size:1.2rem;text-align:center;margin-bottom:20px;padding-bottom:12px;color:var(--text);position:relative}
+.split-col h2::after{content:"";display:block;width:80px;height:2px;margin:10px auto 0;background:linear-gradient(90deg,var(--accent),var(--pink),var(--amber))}
+@media(max-width:760px){.split{grid-template-columns:1fr}}
+.tcard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 20px;width:240px;text-align:center;box-shadow:0 4px 20px var(--card-shadow);transition:transform .25s,box-shadow .25s;position:relative;overflow:hidden}
+.tcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,var(--pink-glow) 0%,transparent 70%);opacity:0;transition:.3s}
+.tcard:hover{transform:translateY(-6px)}
+.tcard:hover::before{opacity:1}
+.avatar{width:92px;height:92px;border-radius:50%;margin:0 auto 16px;background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;font-size:1.8rem;font-weight:800;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 20px var(--accent-glow);position:relative;z-index:1}
+.tphoto{width:120px;height:120px;border-radius:50%;object-fit:cover;object-position:center;margin:0 auto 16px;display:block;box-shadow:0 6px 20px var(--accent-glow);position:relative;z-index:1;border:3px solid var(--border)}
+.tcard h3{font-size:.9rem;color:var(--text);line-height:1.4;position:relative;z-index:1}
+.tcard .sub{color:var(--text-muted);font-size:.72rem;margin-top:8px;font-weight:300;position:relative;z-index:1}
+.tcard .sub a{color:var(--accent);text-decoration:none;position:relative;z-index:1}
+.tcard .tag{display:inline-block;background:var(--pink-glow);color:var(--pink);font-size:.65rem;font-weight:600;padding:4px 12px;border-radius:999px;margin-top:12px;position:relative;z-index:1}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:none}
+footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
+.copyright{margin-top:8px;font-size:.7rem;opacity:.7}
+@media(max-width:640px){
+  .tcard{width:100%;max-width:330px}
+  .nav a{padding:7px 9px;font-size:.75rem}
+  .page-head h1{font-size:1.7rem}
+}
+</style>
+<script>
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  var next=cur==='dark'?'':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('class-theme',next||'light')}catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var b=document.getElementById('themeBtn');
+  b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+document.addEventListener('DOMContentLoaded',function(){
+  try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
+  updateThemeIcon();
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.1});
+  document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el)});
+});
+</script>
+</head>
+<body>
+<header class="top">
+  <nav class="nav">
+    <div class="brand">Наш "В" класс</div>
+    <a href="index.html">Главная</a>
+    <a href="teachers.html" class="active">Учителя</a>
+    <a href="gallery.html">Галерея</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Тема">🌙</button>
+  </nav>
+</header>
+
+<div class="wrap">
+  <main>
+    <section class="page-head reveal">
+      <h1>Наши учителя</h1>
+      <p>Учителя, которые каждый день делают наш класс лучше</p>
+    </section>
+
+    <section class="stage reveal">
+      <h2>Директор школы</h2>
+      <div class="teachers">
+        <div class="tcard">
+          <img class="tphoto" src="img/teachers/director.jpg" alt="Валентина Николаевна Хорькова">
+          <h3>Валентина Николаевна Хорькова</h3>
+          <div class="sub">Директор школы</div>
+          <div class="tag">Школа</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="stage reveal">
+      <h2>Старшая школа</h2>
+      <div class="teachers">
+        <div class="tcard"><img class="tphoto" src="img/teachers/vasilenko.jpg" alt="Василенко"><h3>Василенко Александра Михайловна</h3><div class="sub">Алгебра, Геометрия, классный руководитель</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/kirzhakova.jpg" alt="Киржакова"><h3>Киржакова Анна Игоревна</h3><div class="sub">Русский язык и литература</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/alekseeva.jpg" alt="Алексеева"><h3>Алексеева Наталья Алексеевна</h3><div class="sub">География</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/rukavicyna.jpg" alt="Рукавицына"><h3>Рукавицына Елена Томовна</h3><div class="sub">Физика · <a href="https://elenatomovna.wixsite.com/ya-fisik" target="_blank" rel="noopener">сайт</a></div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/matveev.jpg" alt="Матвеев"><h3>Матвеев Евгений Александрович</h3><div class="sub">Биология</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/rozova.jpg" alt="Розова"><h3>Розова Виктория Викторовна</h3><div class="sub">Информатика</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/guteva.jpg" alt="Гутева"><h3>Гутева Светлана Фёдоровна</h3><div class="sub">Труд / Робототехника</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/timofeeva.jpg" alt="Тимофеева"><h3>Тимофеева Екатерина Анатольевна</h3><div class="sub">Физическая культура</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/listova.jpg" alt="Листова"><h3>Листова Валерия Эдуардовна</h3><div class="sub">Музыка</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/varakina.jpg" alt="Варакина"><h3>Варакина Александра Евгеньевна</h3><div class="sub">История, Обществознание</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/prudnikova.jpg" alt="Прудникова"><h3>Прудникова Галина Петровна</h3><div class="sub">ИЗО / Черчение</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/cvetkova.jpg" alt="Цветкова"><h3>Цветкова Ольга Владимировна</h3><div class="sub">Химия</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/panteleeva.jpg" alt="Пантелеева"><h3>Пантелеева Светлана Анатольевна</h3><div class="sub">Английский язык</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/smirnova.jpg" alt="Смирнова"><h3>Смирнова Татьяна Александровна</h3><div class="sub">Английский язык</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/chekmareva.jpg" alt="Чекмарева"><h3>Чекмарева Татьяна Александровна</h3><div class="sub">Английский язык · <a href="https://engl160.ucoz.ru/" target="_blank" rel="noopener">сайт</a></div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/chikvin.jpg" alt="Чиквин"><h3>Чиквин Владимир Николаевич</h3><div class="sub">ОБЗР</div></div>
+      </div>
+    </section>
+
+    <section class="stage reveal">
+      <h2>Начальная школа</h2>
+      <div class="teachers">
+        <div class="tcard"><img class="tphoto" src="img/teachers/glazkova.jpg" alt="Глазкова"><h3>Глазкова Ольга Вадимовна</h3><div class="sub">Классный руководитель начальной школы</div><div class="tag">Наш классный руководитель</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/kakunets.jpg" alt="Какунец"><h3>Какунец Татьяна Григорьевна</h3><div class="sub">Начальные классы</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/anikonova.jpg" alt="Аниконова"><h3>Аниконова Елена Анатольевна</h3><div class="sub">Логопед</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/panteleeva.jpg" alt="Пантелеева"><h3>Пантелеева Светлана Анатольевна</h3><div class="sub">Английский язык</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/smirnova.jpg" alt="Смирнова"><h3>Смирнова Татьяна Александровна</h3><div class="sub">Английский язык</div></div>
+        <div class="tcard"><img class="tphoto" src="img/teachers/chekmareva.jpg" alt="Чекмарева"><h3>Чекмарева Татьяна Александровна</h3><div class="sub">Английский язык · <a href="https://engl160.ucoz.ru/" target="_blank" rel="noopener">сайт</a></div></div>
+      </div>
+    </section>
+
+    <section class="stage reveal">
+      <div class="split">
+        <div class="split-col">
+          <h2>Пока что не работают</h2>
+          <div class="teachers">
+            <div class="tcard"><img class="tphoto" src="img/teachers/lozhkina.jpg" alt="Ложкина"><h3>Ложкина Ирина Юрьевна</h3><div class="sub">Русский язык и литература</div><div class="tag">❤️</div></div>
+          </div>
+        </div>
+        <div class="split-col">
+          <h2>Не работают</h2>
+          <div class="teachers">
+            <div class="tcard"><img class="tphoto" src="img/teachers/bykova.jpg" alt="Быкова"><h3>Быкова Оксана Федоровна</h3><div class="sub">История, Обществознание</div><div class="tag">❤️</div></div>
+            <div class="tcard"><img class="tphoto" src="img/teachers/ignateva.jpg" alt="Игнатьева"><h3>Игнатьева Марина Николаевна</h3><div class="sub">Технология</div><div class="tag">❤️</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div>© Мудрук Олег, 2025</div>
+    <div class="copyright">Сделано с ❤️ для нашего класса</div>
+  </footer>
+</div>
+</body>
+</html>
