@@ -89,6 +89,11 @@ h2.sec{font-size:1.5rem;margin:52px 0 10px;text-align:center;background:linear-g
 .spoiler.open .spoiler-btn .arrow{transform:rotate(180deg)}
 .spoiler-body{max-height:0;overflow:hidden;transition:max-height .4s ease;color:var(--text-muted);font-size:.72rem;font-weight:300;line-height:1.8}
 .spoiler.open .spoiler-body{max-height:400px;padding:0 20px 18px}
+.schedule{max-width:640px;margin:0 auto 10px;background:var(--surface);border:1px dashed var(--border);border-radius:16px;box-shadow:0 4px 20px var(--card-shadow);overflow:hidden}
+.sched-empty{display:flex;flex-direction:column;align-items:center;text-align:center;padding:44px 24px;gap:8px}
+.sched-ic{font-size:2.4rem}
+.sched-title{font-size:.95rem;font-weight:700;color:var(--text)}
+.sched-sub{font-size:.75rem;font-weight:300;color:var(--text-muted);max-width:380px;line-height:1.6}
 footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
 footer a{color:var(--accent);text-decoration:none}
 .copyright{margin-top:8px;font-size:.7rem;opacity:.7}
@@ -117,6 +122,10 @@ footer a{color:var(--accent);text-decoration:none}
   footer{font-size:.7rem;padding:20px 10px;gap:4px}
   .divider{margin:26px 0}
   .sec{font-size:1.15rem;margin:30px 0 6px}
+  .sched-empty{padding:34px 16px}
+  .sched-ic{font-size:2rem}
+  .sched-title{font-size:.85rem}
+  .sched-sub{font-size:.7rem}
 }
 </style>
 <script>
@@ -177,12 +186,24 @@ document.addEventListener('DOMContentLoaded',function(){
 
     <h2 class="sec reveal">Важные ссылки</h2>
     <div class="links reveal">
+      <a class="link" href="https://t.me/+b_RPrCU6pipkMTMy" target="_blank" rel="noopener">
+        <span class="ic">✈️</span><span class="lbl">Наш Телеграм-канал</span><span class="arrow">→</span>
+      </a>
       <a class="link" href="https://www.gou160.ru/ru" target="_blank" rel="noopener">
         <span class="ic">🏫</span><span class="lbl">Сайт школы</span><span class="arrow">→</span>
       </a>
       <a class="link" href="https://www.gou160.ru/images/Svedeniia_ob_obrazovatelnoi_organizatcii/Dokumenty/2024-2025/_о_правилах_внутреннего_распорядка_.pdf" target="_blank" rel="noopener">
         <span class="ic">📜</span><span class="lbl">Правила внутреннего распорядка школы</span><span class="arrow">→</span>
       </a>
+    </div>
+
+    <h2 class="sec reveal">Расписание уроков</h2>
+    <div class="schedule reveal">
+      <div class="sched-empty">
+        <div class="sched-ic">🗓️</div>
+        <div class="sched-title">Расписание скоро появится</div>
+        <div class="sched-sub">Здесь будет расписание уроков по дням недели. Заглядывай позже!</div>
+      </div>
     </div>
 
     <div class="spoiler reveal">
