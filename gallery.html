@@ -57,6 +57,11 @@ main{padding:10px 0 60px}
 .page-head{text-align:center;padding:48px 20px 10px}
 .page-head h1{font-size:2.2rem;font-weight:800;background:linear-gradient(135deg,var(--accent) 0%,var(--pink) 60%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .page-head p{color:var(--text-muted);margin-top:12px;font-size:.85rem;font-weight:300}
+.big-notice{max-width:760px;margin:26px auto 6px;background:linear-gradient(135deg,var(--amber-glow),var(--pink-glow));border:1.5px solid var(--amber);border-radius:16px;box-shadow:0 4px 20px var(--card-shadow);display:flex;align-items:center;gap:16px;padding:18px 20px}
+.bn-icon{font-size:2rem;flex-shrink:0}
+.bn-title{font-size:.95rem;font-weight:700;color:var(--text);line-height:1.4}
+.bn-sub{font-size:.78rem;font-weight:300;color:var(--text-muted);margin-top:4px;line-height:1.6}
+.bn-sub b{color:var(--amber);font-weight:600}
 .notice{background:var(--surface);border:1px solid var(--amber);border-left:4px solid var(--amber);color:var(--text);padding:14px 18px;border-radius:12px;text-align:center;font-size:.75rem;margin:30px auto 10px;max-width:760px;box-shadow:0 4px 20px var(--card-shadow)}
 .notice b{color:var(--amber)}
 .spoiler{max-width:760px;margin:30px auto 10px;background:var(--surface);border:1px solid var(--border);border-radius:14px;box-shadow:0 4px 20px var(--card-shadow);overflow:hidden}
@@ -132,6 +137,14 @@ document.addEventListener('DOMContentLoaded',function(){
       <h1>Галерея класса</h1>
       <p>Наши фотографии — праздники, поездки и школьные будни</p>
     </section>
+
+    <div class="big-notice reveal">
+      <div class="bn-icon">⚠️</div>
+      <div class="bn-text">
+        <div class="bn-title">Некоторые фотографии могут отображаться некорректно</div>
+        <div class="bn-sub">Что-то может не грузиться или показываться неправильно. Не переживай — <b>видео точно работают</b>, можешь смело их смотреть ниже 👇</div>
+      </div>
+    </div>
 
     <div class="spoiler reveal">
       <button class="spoiler-btn" onclick="this.parentElement.classList.toggle('open')">
