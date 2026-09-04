@@ -96,6 +96,25 @@ h2.sec{font-size:1.5rem;margin:52px 0 10px;text-align:center;background:linear-g
 .sched-ic{font-size:2.4rem}
 .sched-title{font-size:.95rem;font-weight:700;color:var(--text)}
 .sched-sub{font-size:.75rem;font-weight:300;color:var(--text-muted);max-width:380px;line-height:1.6}
+.dnevnik{max-width:600px;margin:0 auto;background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:28px 24px;box-shadow:0 4px 20px var(--card-shadow);display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px}
+.dnevnik-ic{width:76px;height:76px;border-radius:18px;object-fit:cover;box-shadow:0 6px 18px var(--card-shadow)}
+.dnevnik-text{font-size:.78rem;font-weight:300;color:var(--text-muted);max-width:440px;line-height:1.7}
+.dnevnik-text b{color:var(--text);font-weight:600;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.dnevnik .link{width:100%;max-width:360px}
+.sched-tabs{display:flex;gap:8px;padding:14px 16px 0}
+.sched-tab{flex:1;min-width:0;padding:10px 6px;border:1px solid var(--border);background:var(--surface-hover);color:var(--text-muted);border-radius:10px;font-family:'Unbounded',sans-serif;font-size:.7rem;font-weight:600;cursor:pointer;transition:.2s}
+.sched-tab:hover{color:var(--text);transform:translateY(-2px)}
+.sched-tab.active{background:linear-gradient(90deg,var(--accent),var(--pink));color:#fff;border-color:transparent;box-shadow:0 4px 14px var(--accent-glow)}
+.sched-day{display:none;padding:8px 20px 18px}
+.sched-day.active{display:block}
+.sched-day-name{font-size:.68rem;letter-spacing:.4px;text-transform:uppercase;color:var(--text-muted);font-weight:600;text-align:center;margin:10px 0 6px;background:var(--accent-glow);border-radius:999px;padding:6px 10px;width:fit-content;margin-left:auto;margin-right:auto}
+.sched-lesson{display:flex;align-items:center;gap:14px;padding:11px 2px;border-bottom:1px dashed var(--border)}
+.sched-lesson:last-child{border-bottom:none}
+.sched-lesson.zero .sched-num{background:var(--amber-glow);color:var(--amber)}
+.sched-num{flex-shrink:0;width:32px;height:32px;border-radius:10px;background:var(--accent-glow);color:var(--accent);font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
+.sched-cell{display:flex;flex-direction:column;gap:2px}
+.sched-name{font-size:.82rem;font-weight:600;line-height:1.45}
+.sched-subj{font-size:.68rem;font-weight:300;color:var(--text-muted)}
 footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
 footer a{color:var(--accent);text-decoration:none}
 .copyright{margin-top:8px;font-size:.7rem;opacity:.7}
@@ -128,6 +147,10 @@ footer a{color:var(--accent);text-decoration:none}
   .sched-ic{font-size:2rem}
   .sched-title{font-size:.85rem}
   .sched-sub{font-size:.7rem}
+  .sched-tabs{padding:12px 12px 0;gap:6px}
+  .sched-tab{font-size:.62rem;padding:9px 4px}
+  .sched-day{padding:6px 16px 14px}
+  .sched-name{font-size:.76rem}
 }
 </style>
 <script>
@@ -142,9 +165,19 @@ function updateThemeIcon(){
   var b=document.getElementById('themeBtn');
   b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
 }
+function showSched(i){
+  var tabs=document.querySelectorAll('.sched-tab'),days=document.querySelectorAll('.sched-day');
+  for(var k=0;k<tabs.length;k++){tabs[k].classList.toggle('active',k===i);days[k].classList.toggle('active',k===i)}
+}
+function initSched(){
+  var d=new Date();
+  var i=d.getDay();   /* 0=вс … 6=сб → индекс вкладки: (i+6)%7 */
+  showSched((i+6)%7);
+}
 document.addEventListener('DOMContentLoaded',function(){
   try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
   updateThemeIcon();
+  initSched();
   var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.1});
   document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el)});
 });
@@ -199,12 +232,103 @@ document.addEventListener('DOMContentLoaded',function(){
       </a>
     </div>
 
+    <h2 class="sec reveal">Электронный дневник</h2>
+    <div class="dnevnik reveal">
+      <img src="img/dnevnik-icon.webp" alt="Школяр" class="dnevnik-ic">
+      <p class="dnevnik-text">Автор сайта рекомендует для телефона приложение <b>«Школяр — Электронный дневник СПб»</b>.</p>
+      <a class="link" href="https://www.rustore.ru/catalog/app/ru.spb.dnevnik" target="_blank" rel="noopener">
+        <span class="ic">📲</span><span class="lbl">Установить из RuStore</span><span class="arrow">→</span>
+      </a>
+    </div>
+
     <h2 class="sec reveal">Расписание уроков</h2>
     <div class="schedule reveal">
-      <div class="sched-empty">
-        <div class="sched-ic">🗓️</div>
-        <div class="sched-title">Расписание скоро появится</div>
-        <div class="sched-sub">Здесь будет расписание уроков по дням недели. Заглядывай позже!</div>
+      <div class="sched-tabs">
+        <button class="sched-tab active" onclick="showSched(0)">Пон</button>
+        <button class="sched-tab" onclick="showSched(1)">Втор</button>
+        <button class="sched-tab" onclick="showSched(2)">Ср</button>
+        <button class="sched-tab" onclick="showSched(3)">Чт</button>
+        <button class="sched-tab" onclick="showSched(4)">Пт</button>
+        <button class="sched-tab" onclick="showSched(5)">Сб</button>
+        <button class="sched-tab" onclick="showSched(6)">Вс</button>
+      </div>
+
+      <div class="sched-day active">
+        <div class="sched-day-name">Понедельник</div>
+        <div class="sched-lesson zero"><div class="sched-num">0</div><div class="sched-cell"><div class="sched-name">Разговоры о важном</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">1</div><div class="sched-cell"><div class="sched-name">История</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">2</div><div class="sched-cell"><div class="sched-name">Алгебра</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">3</div><div class="sched-cell"><div class="sched-name">Русский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">4</div><div class="sched-cell"><div class="sched-name">География</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">5</div><div class="sched-cell"><div class="sched-name">Литература</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">6</div><div class="sched-cell"><div class="sched-name">Геометрия</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">7</div><div class="sched-cell"><div class="sched-name">Элективная дисциплина: подготовка к ОГЭ по математике</div></div></div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Вторник</div>
+        <div class="sched-lesson"><div class="sched-num">1</div><div class="sched-cell"><div class="sched-name">Английский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">2</div><div class="sched-cell"><div class="sched-name">Алгебра</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">3</div><div class="sched-cell"><div class="sched-name">Литература</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">4</div><div class="sched-cell"><div class="sched-name">Химия</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">5</div><div class="sched-cell"><div class="sched-name">География</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">6</div><div class="sched-cell"><div class="sched-name">Алгебра</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">7</div><div class="sched-cell"><div class="sched-name">Физика</div></div></div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Среда</div>
+        <div class="sched-lesson"><div class="sched-num">1</div><div class="sched-cell"><div class="sched-name">Физика</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">2</div><div class="sched-cell"><div class="sched-name">Русский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">3</div><div class="sched-cell"><div class="sched-name">Обществознание</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">4</div><div class="sched-cell"><div class="sched-name">Химия</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">5</div><div class="sched-cell">
+          <div class="sched-name">Информатика <span class="sched-subj">· гр. Чиквиной Г.Н.</span></div>
+          <div class="sched-name">Труд <span class="sched-subj">· гр. Гутевой С.Ф.</span></div>
+        </div></div>
+        <div class="sched-lesson"><div class="sched-num">6</div><div class="sched-cell"><div class="sched-name">Физическая культура</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">7</div><div class="sched-cell"><div class="sched-name">Литература</div></div></div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Четверг</div>
+        <div class="sched-lesson"><div class="sched-num">1</div><div class="sched-cell"><div class="sched-name">Русский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">2</div><div class="sched-cell"><div class="sched-name">Физическая культура</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">3</div><div class="sched-cell"><div class="sched-name">Английский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">4</div><div class="sched-cell"><div class="sched-name">История</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">5</div><div class="sched-cell"><div class="sched-name">Биология</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">6</div><div class="sched-cell"><div class="sched-name">Геометрия</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">7</div><div class="sched-cell"><div class="sched-name">Индивидуальный проект</div></div></div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Пятница</div>
+        <div class="sched-lesson"><div class="sched-num">1</div><div class="sched-cell"><div class="sched-name">Английский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">2</div><div class="sched-cell"><div class="sched-name">Вероятность и статистика</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">3</div><div class="sched-cell"><div class="sched-name">Английский язык</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">4</div><div class="sched-cell"><div class="sched-name">Биология</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">5</div><div class="sched-cell">
+          <div class="sched-name">Труд <span class="sched-subj">· гр. Чиквиной Г.Н.</span></div>
+          <div class="sched-name">Информатика <span class="sched-subj">· гр. Гутевой С.Ф.</span></div>
+        </div></div>
+        <div class="sched-lesson"><div class="sched-num">6</div><div class="sched-cell"><div class="sched-name">Физика</div></div></div>
+        <div class="sched-lesson"><div class="sched-num">7</div><div class="sched-cell"><div class="sched-name">ОБЗР (ОБЖ)</div></div></div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Суббота</div>
+        <div class="sched-empty">
+          <div class="sched-ic">🎉</div>
+          <div class="sched-title">Уроков нет — выходной!</div>
+        </div>
+      </div>
+
+      <div class="sched-day">
+        <div class="sched-day-name">Воскресенье</div>
+        <div class="sched-empty">
+          <div class="sched-ic">☀️</div>
+          <div class="sched-title">Уроков нет — выходной!</div>
+        </div>
       </div>
     </div>
 
