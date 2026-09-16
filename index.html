@@ -184,6 +184,7 @@ footer a{color:var(--accent);text-decoration:none}
 .season-step{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:32px;height:32px;border-radius:50%;background:var(--surface);border:2px solid var(--border);box-shadow:0 2px 8px var(--card-shadow);display:flex;align-items:center;justify-content:center;font-size:1rem;z-index:2;transition:transform .25s,border-color .25s,box-shadow .25s}
 .season-step.on{transform:translate(-50%,-50%) scale(1.3);border-color:var(--pink);box-shadow:0 0 0 4px var(--pink-glow)}
 .season-mark{position:absolute;top:50%;left:0;transform:translate(-50%,-50%);width:13px;height:13px;border-radius:50%;background:#fff;border:3px solid var(--pink);box-shadow:0 0 0 3px var(--pink-glow);z-index:3;transition:left 1s cubic-bezier(.4,0,.2,1)}
+.foot-note{max-width:560px;margin:16px auto 0;font-size:.66rem;line-height:1.7;color:var(--text-muted);opacity:.8;font-weight:300}
 @media(max-width:640px){
   .hero h1{font-size:1.9rem}
   .nav a{padding:7px 9px;font-size:.75rem}
@@ -453,6 +454,7 @@ document.addEventListener('DOMContentLoaded',function(){
       <div class="season-step step-autumn" style="left:80%">🍂</div>
       <div class="season-mark" id="seasonMark"></div>
     </div>
+    <div class="foot-note">Этот сайт не является первоисточником информации — расписание и другие уведомления выкладываются вручную с задержкой и могут отличаться от официальных данных. Он создан для вашего удобства: уточняйте важную информацию у учителей и в электронном дневнике.</div>
   </footer>
 </div>
 </body>
