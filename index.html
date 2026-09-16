@@ -64,6 +64,14 @@ main{padding:10px 0 60px}
 .hero p.desc{color:var(--text-muted);max-width:620px;margin:20px auto 0;font-size:.95rem;font-weight:300}
 .notice{background:var(--surface);border:1px solid var(--amber);border-left:4px solid var(--amber);color:var(--text);padding:14px 18px;border-radius:12px;text-align:center;font-size:.8rem;margin:0 auto 10px;max-width:720px;box-shadow:0 4px 20px var(--card-shadow)}
 .notice b{color:var(--amber)}
+.announce{position:relative;max-width:720px;margin:0 auto 14px;background:linear-gradient(135deg,var(--accent),var(--pink) 55%,var(--amber));border-radius:18px;padding:22px 22px 20px;box-shadow:0 10px 30px var(--card-shadow);text-align:center;overflow:hidden;color:#fff}
+.announce::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.18) 1.5px,transparent 1.5px);background-size:22px 22px;pointer-events:none}
+.announce-ic{font-size:1.9rem;line-height:1;position:relative;animation:bounce 1.2s infinite}
+@keyframes bounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.announce-title{position:relative;font-size:1rem;font-weight:800;letter-spacing:.3px;margin:8px 0 14px}
+.announce-dates{position:relative;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.announce-date{flex:1;min-width:130px;max-width:200px;background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(6px);border-radius:14px;padding:10px 14px;font-size:.74rem;font-weight:400;line-height:1.5}
+.announce-date b{display:block;font-size:1.05rem;font-weight:800;letter-spacing:.5px;margin-bottom:2px}
 .quick{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin:44px 0 10px}
 .qcard{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:22px 26px;min-width:250px;text-decoration:none;color:var(--text);box-shadow:0 4px 20px var(--card-shadow);transition:transform .25s,box-shadow .25s;text-align:left;position:relative;overflow:hidden}
 .qcard::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,var(--pink-glow) 0%,transparent 70%);opacity:0;transition:.3s}
@@ -196,6 +204,15 @@ document.addEventListener('DOMContentLoaded',function(){
 
 <div class="wrap">
   <main>
+    <div class="announce reveal">
+      <div class="announce-ic">🚨</div>
+      <div class="announce-title">Внимание! Важное объявление</div>
+      <div class="announce-dates">
+        <div class="announce-date"><b>17 сентября</b>сокращённый день</div>
+        <div class="announce-date"><b>18–20 сентября</b>выходные</div>
+        <div class="announce-date"><b>21 сентября</b>мафия — не учимся 🎲</div>
+      </div>
+    </div>
     <div class="notice reveal"><b>⚠️</b> Работа старого сайта прекращена — 27 августа</div>
 
     <section class="hero reveal">
