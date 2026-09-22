@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#7c5ce0"/>
+      <stop offset="55%" stop-color="#d946a8"/>
+      <stop offset="100%" stop-color="#d4990a"/>
+    </linearGradient>
+    <linearGradient id="letter" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff"/>
+      <stop offset="100%" stop-color="#f3e9ff"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="rgba(255,255,255,0.35)"/>
+      <stop offset="100%" stop-color="rgba(255,255,255,0)"/>
+    </radialGradient>
+  </defs>
+  <rect width="128" height="128" rx="30" fill="url(#bg)"/>
+  <rect width="128" height="128" rx="30" fill="url(#glow)"/>
+  <circle cx="106" cy="20" r="26" fill="rgba(255,255,255,0.14)"/>
+  <circle cx="20" cy="112" r="32" fill="rgba(0,0,0,0.10)"/>
+  <text x="64" y="92" text-anchor="middle" font-family="'Unbounded','Segoe UI',Arial,sans-serif" font-weight="800" font-size="78" fill="url(#letter)">В</text>
+</svg>
