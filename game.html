@@ -339,8 +339,9 @@ function drawSnake(a,c){
     var x=pv.x+(cur.x-pv.x)*a,y=pv.y+(cur.y-pv.y)*a;
     var px=x*CELL+CELL/2,py=y*CELL+CELL/2;
     var t=snake.length===1?0:i/(snake.length-1);
-    var col=mix(c.accent,c.pink,Math.min(1,t*1.9));
-    col=mix(col,c.tail,Math.min(0.55,Math.max(0,(t-0.75)/0.25)));
+    var colA=mixArr(c.accent,c.pink,Math.min(1,t*1.9));
+    colA=mixArr(colA,c.tail,Math.min(0.55,Math.max(0,(t-0.75)/0.25)));
+    var col=rgb(colA);
     var r=CELL*0.38;
     if(i===0){
       ctx.save();
@@ -369,8 +370,8 @@ function eye(fx,fy,w,h){
   ctx.fillStyle='#16131f';ctx.fill();
 }
 function shade(col,k){var m=col.match(/\d+/g);return 'rgb('+Math.round(m[0]*k)+','+Math.round(m[1]*k)+','+Math.round(m[2]*k)+')'}
-function rgb(a){return 'rgb('+a[0]+','+a[1]+','+a[2]+')'}
-function mix(a,b,t){return 'rgb('+Math.round(a[0]+(b[0]-a[0])*t)+','+Math.round(a[1]+(b[1]-a[1])*t)+','+Math.round(a[2]+(b[2]-a[2])*t)+')'}
+function rgb(a){return 'rgb('+Math.round(a[0])+','+Math.round(a[1])+','+Math.round(a[2])+')'}
+function mixArr(a,b,t){return [a[0]+(b[0]-a[0])*t,a[1]+(b[1]-a[1])*t,a[2]+(b[2]-a[2])*t]}
 
 function drawFood(f,now){
   var px=f.x*CELL+CELL/2,py=f.y*CELL+CELL/2;
