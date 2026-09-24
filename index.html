@@ -289,6 +289,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
     vidOv.classList.remove('open');
   }
   document.querySelectorAll('.sched-name').forEach(function(el){
+    if(el.textContent.trim()!=='Химия')return;
     el.classList.add('vlink');
     el.addEventListener('click',openVid);
   });
