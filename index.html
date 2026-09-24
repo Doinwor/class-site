@@ -177,6 +177,16 @@ h2.sec{font-size:1.5rem;margin:52px 0 10px;text-align:center;background:linear-g
 .sched-num{flex-shrink:0;width:32px;height:32px;border-radius:10px;background:var(--accent-glow);color:var(--accent);font-size:.75rem;font-weight:700;display:flex;align-items:center;justify-content:center}
 .sched-cell{display:flex;flex-direction:column;gap:2px}
 .sched-name{font-size:.82rem;font-weight:600;line-height:1.45}
+.sched-name.vlink{cursor:pointer;display:inline-block;border-radius:8px;padding:1px 7px;margin:-1px -7px 0 0;transition:background .15s,transform .15s}
+.sched-name.vlink:hover{background:var(--accent-glow);transform:translateX(2px)}
+.sched-name.vlink:active{background:var(--pink-glow)}
+.sched-vid{position:fixed;inset:0;z-index:1000;display:none;background:rgba(0,0,0,0.92);backdrop-filter:blur(6px);align-items:center;justify-content:center;flex-direction:column;padding:0;touch-action:manipulation}
+.sched-vid.open{display:flex}
+.sched-vid video{width:100%;height:100%;object-fit:contain;background:#000}
+.vid-close{position:fixed;top:max(12px,env(safe-area-inset-top));left:12px;z-index:1001;width:46px;height:46px;border:none;border-radius:14px;background:rgba(255,255,255,0.14);border:1px solid rgba(255,255,255,0.25);color:#fff;font-size:1.35rem;line-height:1;font-family:'Unbounded',sans-serif;font-weight:300;cursor:pointer;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(8px);box-shadow:0 6px 18px rgba(0,0,0,0.35);transition:transform .15s,background .15s;-webkit-tap-highlight-color:transparent}
+.vid-close:hover{background:rgba(255,255,255,0.24);transform:scale(1.06)}
+.vid-close:active{transform:scale(.92)}
+.vid-caption{position:fixed;left:50%;bottom:max(14px,env(safe-area-inset-bottom));transform:translateX(-50%);z-index:1001;color:#fff;font-size:.66rem;font-weight:300;opacity:.7;pointer-events:none;white-space:nowrap}
 .sched-subj{font-size:.68rem;font-weight:300;color:var(--text-muted)}
 footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.8rem}
 footer a{color:var(--accent);text-decoration:none}
@@ -264,6 +274,28 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
     dn.classList.remove('pop');void dn.offsetWidth;dn.classList.add('pop');
     if(dnClicks>=3){dnClicks=0;location.href='game.html'}
   });
+  var vidOv=document.getElementById('schedVid');
+  var vidEl=document.getElementById('schedVideo');
+  var vidClose=document.getElementById('vidClose');
+  function openVid(){
+    if(vidOv.classList.contains('open'))return;
+    vidEl.src='video/lv_0_20260924075645.mp4';
+    vidOv.classList.add('open');
+    var p=vidEl.play();
+    if(p&&p.catch)p.catch(function(){});
+  }
+  function closeVid(){
+    vidEl.pause();
+    vidEl.removeAttribute('src');
+    vidOv.classList.remove('open');
+  }
+  document.querySelectorAll('.sched-name').forEach(function(el){
+    el.classList.add('vlink');
+    el.addEventListener('click',openVid);
+  });
+  if(vidClose)vidClose.addEventListener('click',closeVid);
+  if(vidOv)vidOv.addEventListener('click',function(e){if(e.target===vidOv)closeVid()});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid()});
 });
 </script>
 </head>
@@ -432,7 +464,13 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
     <div>© Мудрук Олег, 2025</div>
     <div class="copyright">Сделано с ❤️ для нашего класса</div>
     <div class="foot-note">Этот сайт не является первоисточником информации — расписание и другие уведомления выкладываются вручную с задержкой и могут отличаться от официальных данных. Он создан для вашего удобства: уточняйте важную информацию у учителей и в электронном дневнике.</div>
-  </footer>
+</footer>
+</div>
+
+<div class="sched-vid" id="schedVid" role="dialog" aria-modal="true" aria-label="Видео к уроку">
+  <video id="schedVideo" controls playsinline webkit-playsinline preload="none"></video>
+  <button class="vid-close" id="vidClose" title="Закрыть">✕</button>
+  <div class="vid-caption">Видео к уроку</div>
 </div>
 </body>
 </html>
