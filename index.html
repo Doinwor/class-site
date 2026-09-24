@@ -154,26 +154,39 @@ main{padding:10px 0 60px}
 .chan-arrow{margin-left:auto;color:var(--text-muted);font-size:1.1rem;flex-shrink:0;transition:transform .25s}
 .chan:hover .chan-arrow{transform:translateX(4px);color:var(--accent)}
 
-.warn{position:fixed;inset:0;z-index:2000;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(5,5,10,0.75);backdrop-filter:blur(10px);touch-action:manipulation}
+.warn{position:fixed;inset:0;z-index:2000;display:none;flex-direction:column;align-items:center;justify-content:center;padding:24px;background:#fff;color:#1f2937;font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;touch-action:manipulation;overflow-y:auto}
 .warn.open{display:flex}
-.warn-card{position:relative;width:100%;max-width:420px;background:var(--surface);border:1px solid var(--border);border-radius:22px;padding:32px 26px 26px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,0.35);overflow:hidden;animation:warnIn .3s ease}
-[data-theme="dark"] .warn-card{background:#101018}
-@keyframes warnIn{0%{opacity:0;transform:translateY(18px) scale(.96)}100%{opacity:1;transform:none}}
-.warn-card::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at top right,rgba(245,158,11,.16) 0%,transparent 60%)}
-.warn-ic{font-size:3rem;line-height:1;position:relative;animation:warnFloat 1.4s ease-in-out infinite}
-@keyframes warnFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
-.warn-title{position:relative;font-size:1.25rem;font-weight:800;margin:16px 0 10px;line-height:1.35;background:linear-gradient(90deg,var(--amber),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
-.warn-text{position:relative;font-size:.74rem;font-weight:300;color:var(--text-muted);line-height:1.8;margin-bottom:22px}
-.warn-text b{color:var(--text);font-weight:600}
-.warn-note{position:relative;font-size:.64rem;font-weight:300;color:var(--amber);margin:0 0 18px;min-height:1em}
-.warn-row{position:relative;display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
-.warn-go{font-family:'Unbounded',sans-serif;font-size:.78rem;font-weight:700;color:#fff;background:linear-gradient(135deg,var(--amber),var(--pink));border:none;border-radius:13px;padding:13px 26px;cursor:pointer;box-shadow:0 8px 22px rgba(212,153,10,.3);transition:transform .18s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
-.warn-go:hover{transform:translateY(-3px)}
-.warn-no{font-family:'Unbounded',sans-serif;font-size:.78rem;font-weight:600;color:var(--text-muted);background:var(--surface-hover);border:1px solid var(--border);border-radius:13px;padding:13px 22px;cursor:pointer;transition:.18s}
-.warn-no:hover{color:var(--text)}
+[data-theme="dark"] .warn{background:#202124}
+.warn-inner{width:100%;max-width:560px;text-align:center;animation:warnFade .35s ease}
+@keyframes warnFade{0%{opacity:0}100%{opacity:1}}
+.warn-ic{width:78px;height:78px;margin:0 auto 20px;border-radius:50%;background:rgba(217,48,37,.12);display:flex;align-items:center;justify-content:center;font-size:2.6rem;animation:warnPulse 1.6s ease-in-out infinite}
+@keyframes warnPulse{0%,100%{box-shadow:0 0 0 0 rgba(217,48,37,.25)}50%{box-shadow:0 0 0 14px rgba(217,48,37,0)}}
+.warn-kicker{font-size:.78rem;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#d93025;margin-bottom:10px}
+.warn-title{font-size:1.55rem;font-weight:600;line-height:1.35;margin:0 0 14px;color:#1f2937}
+[data-theme="dark"] .warn-title{color:#e8eaed}
+.warn-text{font-size:.95rem;font-weight:400;color:#5f6368;line-height:1.7;margin-bottom:8px}
+[data-theme="dark"] .warn-text{color:#bdc1c6}
+.warn-text b{color:#1f2937;font-weight:600}
+[data-theme="dark"] .warn-text b{color:#e8eaed}
+.warn-url{display:inline-flex;align-items:center;gap:8px;background:rgba(0,0,0,.06);border:1px solid rgba(0,0,0,.12);border-radius:999px;padding:7px 18px;font-size:.82rem;font-weight:500;color:#202124;margin:6px 0 4px}
+[data-theme="dark"] .warn-url{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.18);color:#e8eaed}
+.warn-url .lock{opacity:.7}
+.warn-note{font-size:.82rem;font-weight:400;color:#d93025;margin:14px 0;min-height:1.4em}
+[data-theme="dark"] .warn-note{color:#f28b82}
+.warn-row{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:14px}
+.warn-go{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:.92rem;font-weight:600;color:#fff;background:#1a73e8;border:none;border-radius:6px;padding:12px 26px;cursor:pointer;box-shadow:0 2px 6px rgba(26,115,232,.3);transition:.18s;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.warn-go:hover{background:#1765cc}
+[data-theme="dark"] .warn-go{background:#8ab4f8;color:#202124}
+[data-theme="dark"] .warn-go:hover{background:#aecbfa}
+.warn-no{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:.92rem;font-weight:600;color:#1a73e8;background:transparent;border:none;border-radius:6px;padding:12px 20px;cursor:pointer;transition:.18s}
+.warn-no:hover{background:rgba(26,115,232,.08)}
+[data-theme="dark"] .warn-no{color:#8ab4f8}
+[data-theme="dark"] .warn-no:hover{background:rgba(138,180,248,.1)}
+.warn-back{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;font-size:.78rem;color:#5f6368;margin-top:34px;text-decoration:none;border-bottom:1px solid rgba(0,0,0,.2)}
+[data-theme="dark"] .warn-back{color:#bdc1c6;border-bottom-color:rgba(255,255,255,.3)}
 @media(max-width:480px){
-  .warn-card{padding:26px 18px 22px}
-  .warn-title{font-size:1.1rem}
+  .warn-title{font-size:1.25rem}
+  .warn-text{font-size:.86rem}
 }
 .link{display:flex;align-items:center;gap:14px;background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 20px;text-decoration:none;color:var(--text);box-shadow:0 4px 20px var(--card-shadow);transition:.2s;position:relative;overflow:hidden}
 .link::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(180deg,var(--accent),var(--pink))}
@@ -337,7 +350,7 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
   if(vidClose)vidClose.addEventListener('click',closeVid);
   if(vidOv)vidOv.addEventListener('click',function(e){if(e.target===vidOv)closeVid()});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')closeVid()});
-  var MAX_URL='#';
+  var MAX_URL='https://max.ru/join/DhvA7Bryj6zB7lhoENJznyX46HHevXZ34CPK8ymGaE';
   var warnOv=document.getElementById('warnOv');
   var warnGo=document.getElementById('warnGo');
   var warnNo=document.getElementById('warnNo');
@@ -556,16 +569,19 @@ var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isInt
   <button class="vid-close" id="vidClose" title="Закрыть">✕</button>
 </div>
 
-<div class="warn" id="warnOv" role="dialog" aria-modal="true" aria-label="Предупреждение о внешнем ресурсе">
-  <div class="warn-card">
-    <div class="warn-ic">⚠️</div>
-    <div class="warn-title">Вы переходите на небезопасный ресурс</div>
-    <div class="warn-text">Ссылка ведёт на внешний сайт — <b>Месенджер Макс</b>. Сайт класса не отвечает за содержимое и безопасность внешних сервисов. Продолжить?</div>
+<div class="warn" id="warnOv" role="dialog" aria-modal="true" aria-label="Предупреждение о небезопасном ресурсе">
+  <div class="warn-inner">
+    <div class="warn-ic">!</div>
+    <div class="warn-kicker">Проверка безопасности</div>
+    <div class="warn-title">Вам нужно проявить осторожность</div>
+    <div class="warn-text">Сайт <b>max.ru</b> отказался подтвердить, что его сертификат безопасности корректен. Или подтвердил его, но этот ресурс не является официальным каналом класса. Если вы всё равно хотите перейти, кнопка ниже откроет его в новой вкладке.</div>
+    <div class="warn-url"><span class="lock">🔒</span> https://max.ru/join/DhvA7Bryj6zB7lhoENJznyX46HHevXZ34CPK8ymGaE</div>
     <div class="warn-note" id="warnNote"></div>
     <div class="warn-row">
       <a class="warn-go" id="warnGo" href="#" target="_blank" rel="noopener">Продолжить</a>
       <button class="warn-no" id="warnNo">Отмена</button>
     </div>
+    <a class="warn-back" id="warnBack" href="#">← Вернуться на сайт класса</a>
   </div>
 </div>
 </body>
