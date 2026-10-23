@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="img/favicon.svg">
+<title>Условия пользования сайтом — Наш "В" класс</title>
+<meta name="description" content="Условия пользования сайтом класса: сайт не является первоисточником информации, данные выкладываются вручную с задержкой, видеоматериалы размещены на YouTube.">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&display=swap');
+:root{
+  --bg:#f5f5f7;--surface:#ffffff;--surface-hover:#eaeaef;--border:#dddde5;--text:#111118;--text-muted:#6b6b80;
+  --accent:#7c5ce0;--accent-glow:rgba(124,92,224,.15);--pink:#d946a8;--amber:#d4990a;--card-shadow:rgba(0,0,0,.06);
+  --glow-1:rgba(124,92,224,.10);--glow-2:rgba(217,70,168,.08);
+}
+[data-theme="dark"]{
+  --bg:#050508;--surface:#0f0f14;--surface-hover:#1a1a24;--border:#1e1e2a;--text:#f0f0f5;--text-muted:#8888a0;
+  --accent:#a78bfa;--accent-glow:rgba(167,139,250,.25);--pink:#f472b6;--amber:#fbbf24;--card-shadow:rgba(0,0,0,.3);
+  --glow-1:rgba(124,92,224,.10);--glow-2:rgba(217,70,168,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Unbounded',sans-serif;background:var(--bg);color:var(--text);line-height:1.75;transition:background .3s,color .3s;min-height:100vh;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;background:radial-gradient(ellipse at top right,var(--glow-1) 0%,transparent 55%),radial-gradient(ellipse at bottom left,var(--glow-2) 0%,transparent 55%)}
+.wrap{position:relative;z-index:1;max-width:900px;margin:0 auto;padding:20px}
+header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--bg) 82%,transparent);backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:14px 20px;flex-wrap:wrap}
+.brand{font-weight:700;font-size:1rem;margin-right:auto;white-space:nowrap;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;text-decoration:none}
+.nav a{color:var(--text-muted);text-decoration:none;padding:8px 14px;border-radius:10px;font-weight:500;font-size:.85rem;transition:.2s}
+.nav a:hover{color:var(--text);background:var(--surface-hover)}
+.theme-btn{cursor:pointer;background:var(--surface-hover);border:1px solid var(--border);color:var(--text);width:38px;height:38px;border-radius:10px;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:.2s}
+.theme-btn:hover{transform:rotate(-12deg)}
+main{padding:20px 0 60px}
+.hero{text-align:center;padding:40px 10px 26px}
+.badge{display:inline-block;background:var(--accent-glow);color:var(--accent);border:1px solid var(--border);padding:8px 16px;border-radius:999px;font-size:.7rem;font-weight:600;margin-bottom:20px;letter-spacing:.3px}
+.hero h1{font-size:2.1rem;font-weight:800;letter-spacing:-.5px;line-height:1.25;background:linear-gradient(135deg,var(--accent) 0%,var(--pink) 60%,var(--amber) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--text-muted);max-width:620px;margin:16px auto 0;font-size:.85rem;font-weight:300}
+.doc{display:flex;flex-direction:column;gap:16px}
+.card{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:24px 26px;box-shadow:0 4px 20px var(--card-shadow);text-align:left}
+.card h2{font-size:1.02rem;font-weight:700;margin-bottom:12px;display:flex;align-items:center;gap:10px;background:linear-gradient(90deg,var(--accent),var(--pink));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+.card h2 .ic{font-size:1.15rem;-webkit-text-fill-color:initial}
+.card p{font-size:.82rem;font-weight:300;color:var(--text-muted);line-height:1.85;margin-bottom:12px}
+.card p:last-child{margin-bottom:0}
+.card ul{margin:0 0 0 20px;font-size:.82rem;font-weight:300;color:var(--text-muted);line-height:1.85}
+.card li{margin-bottom:8px}
+.card li::marker{color:var(--accent)}
+.card b{color:var(--text);font-weight:600}
+.card a{color:var(--accent)}
+.note{border-left:3px solid var(--amber);background:var(--surface);border-radius:12px;padding:14px 18px;font-size:.78rem;color:var(--text-muted);line-height:1.7}
+.back-form{display:inline-block;color:var(--text-muted);text-decoration:none;font-size:.76rem;font-weight:500;padding:9px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface);transition:.2s}
+.back-form:hover{color:var(--text);border-color:var(--accent);transform:translateY(-1px)}
+.accept-card{text-align:center}
+.accept-btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:12px;padding:14px 26px;font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink));cursor:pointer;transition:.2s;box-shadow:0 8px 24px var(--accent-glow)}
+.accept-btn:hover{transform:translateY(-2px)}
+.accept-ok{display:none;font-size:.78rem;color:var(--accent);margin-top:14px;font-weight:600}
+footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.78rem}
+footer a{color:var(--accent);text-decoration:none}
+.copyright{margin-top:8px;font-size:.7rem;opacity:.7}
+@media(max-width:640px){
+  .hero h1{font-size:1.6rem}
+  .card{padding:20px 18px}
+  .nav a{padding:7px 9px;font-size:.75rem}
+}
+</style>
+<script>
+function toggleTheme(){
+  var cur=document.documentElement.getAttribute('data-theme');
+  var next=cur==='dark'?'':'dark';
+  document.documentElement.setAttribute('data-theme',next);
+  try{localStorage.setItem('class-theme',next||'light')}catch(e){}
+  updateThemeIcon();
+}
+function updateThemeIcon(){
+  var b=document.getElementById('themeBtn');
+  if(b)b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
+}
+function acceptTerms(){
+  try{localStorage.setItem('class-terms-accepted','1')}catch(e){}
+  var ok=document.getElementById('acceptOk');
+  if(ok)ok.style.display='block';
+  setTimeout(function(){location.href='index.html'},700);
+}
+document.addEventListener('DOMContentLoaded',function(){
+  try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
+  updateThemeIcon();
+  try{if(localStorage.getItem('class-terms-accepted')==='1')document.getElementById('acceptOk').style.display='block'}catch(e){}
+});
+</script>
+</head>
+<body>
+<header class="top">
+  <nav class="nav">
+    <a class="brand" href="index.html">Наш "В" класс</a>
+    <a href="index.html">Главная</a>
+    <a href="teachers.html">Учителя</a>
+    <a href="gallery.html">Галерея</a>
+    <button class="theme-btn" id="themeBtn" onclick="toggleTheme()" title="Тема">🌙</button>
+  </nav>
+</header>
+
+<div class="wrap">
+<main>
+  <section class="hero">
+    <div class="badge">📄 Правовая информация</div>
+    <h1>Условия пользования сайтом</h1>
+    <p>Коротко о том, чем этот сайт является, чем не является и как относиться к информации на нём.</p>
+  </section>
+
+  <div style="text-align:center;margin-bottom:18px">
+    <a class="back-form" href="index.html">← Вернуться к форме</a>
+  </div>
+
+  <div class="doc">
+    <div class="card">
+      <h2><span class="ic">🚫</span> Сайт не является первоисточником информации</h2>
+      <p>Этот сайт — неофициальный проект нашего класса. Он не является сайтом школы, электронным дневником или официальным каналом объявлений. Всё, что здесь публикуется, — это заметки, пересказ и удобная для класса форма подачи информации.</p>
+      <p>Первоисточниками остаются учителя, школа и электронный дневник. Информация на сайте может появляться позже, быть неполной или меняться. Автор может что-то не успеть добавить, ошибиться в дате или не знать о переносе.</p>
+      <p>Поэтому относитесь к сайту как к подсказке, а не как к истине в последней инстанции. <b>Важные сведения всегда уточняйте у учителей и в электронном дневнике.</b></p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">🗓️</span> Расписание и уведомления выкладываются вручную</h2>
+      <p>Расписание уроков, домашние задания, объявления, даты каникул и другие уведомления выкладываются на сайт вручную. Из-за этого возможна задержка: в школе изменение уже произошло, а на сайте ещё отображается старая версия.</p>
+      <p>По этой же причине данные на сайте могут отличаться от официальных. В тексте возможны опечатки и неточности. Автор не гарантирует, что информация актуальна в любой момент времени.</p>
+      <p>Сайт может временно не работать, обновляться или быть недоступным — это нормально для небольшого неофициального проекта.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">💡</span> Для чего создан сайт</h2>
+      <p>Сайт создан для удобства нашего класса: чтобы ссылки, расписание, информация об учителях и галерея были собраны в одном месте. Это личный проект, а не официальный сервис школы.</p>
+      <p>Сайт не заменяет электронный дневник и не заменяет общение с учителями. Он лишь помогает быстро посмотреть то, что и так можно найти в других местах.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">✅</span> Что делать с важной информацией</h2>
+      <ul>
+        <li>Уточняйте её у учителей и классного руководителя.</li>
+        <li>Проверяйте в электронном дневнике.</li>
+        <li>Сверяйтесь с официальным сайтом школы.</li>
+        <li>Если заметили ошибку на сайте — сообщите автору или в чат класса.</li>
+        <li>Не принимайте важные решения, опираясь только на этот сайт.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">🎬</span> Видеоматериалы и YouTube</h2>
+      <p>Внимание: все видеоматериалы представлены на платформе YouTube.</p>
+      <p>Используйте VPN и другие сервисы. Автор сайта не навязывает использование обходов блокировки сервиса YouTube на территории РФ.</p>
+      <p>Пользователь сам принимает решение использовать вышеупомянутый сервис или нет. Автор не гарантирует доступность YouTube и других внешних сервисов и не отвечает за их работу и содержание.</p>
+    </div>
+
+    <div class="card">
+      <h2><span class="ic">🔗</span> Внешние ссылки</h2>
+      <p>На сайте есть ссылки на сторонние ресурсы: сайт школы, электронный дневник, RuStore, Telegram, MAX, YouTube и другие. Переход по ним — ваше решение. Автор сайта не отвечает за содержание и доступность этих ресурсов.</p>
+    </div>
+
+    <div class="card accept-card">
+      <h2 style="justify-content:center"><span class="ic">📌</span> Принятие условий</h2>
+      <p style="text-align:center">Продолжая пользоваться сайтом, вы понимаете, что он неофициальный, информация на нём может быть неточной или запоздалой, а использование внешних сервисов — ваше собственное решение.</p>
+      <button class="accept-btn" onclick="acceptTerms()">Принять и вернуться на главную</button>
+      <div class="accept-ok" id="acceptOk">✓ Условия приняты. Возвращаемся на главную…</div>
+      <div class="note" style="margin-top:18px;text-align:left">Этот сайт не является первоисточником информации — расписание и другие уведомления выкладываются вручную с задержкой и могут отличаться от официальных данных. Он создан для вашего удобства: уточняйте важную информацию у учителей и в электронном дневнике.</div>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div>© Мудрук Олег, 2025</div>
+  <div class="copyright">Сделано с ❤️ для нашего класса</div>
+  <div style="margin-top:12px"><a href="index.html">← Вернуться на главную</a></div>
+</footer>
+</div>
+</body>
+</html>
