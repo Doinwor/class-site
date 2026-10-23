@@ -49,10 +49,6 @@ main{padding:20px 0 60px}
 .note{border-left:3px solid var(--amber);background:var(--surface);border-radius:12px;padding:14px 18px;font-size:.78rem;color:var(--text-muted);line-height:1.7}
 .back-form{display:inline-block;color:var(--text-muted);text-decoration:none;font-size:.76rem;font-weight:500;padding:9px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface);transition:.2s}
 .back-form:hover{color:var(--text);border-color:var(--accent);transform:translateY(-1px)}
-.accept-card{text-align:center}
-.accept-btn{display:inline-flex;align-items:center;justify-content:center;border:none;border-radius:12px;padding:14px 26px;font-family:'Unbounded',sans-serif;font-size:.8rem;font-weight:700;color:#fff;background:linear-gradient(90deg,var(--accent),var(--pink));cursor:pointer;transition:.2s;box-shadow:0 8px 24px var(--accent-glow)}
-.accept-btn:hover{transform:translateY(-2px)}
-.accept-ok{display:none;font-size:.78rem;color:var(--accent);margin-top:14px;font-weight:600}
 footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.78rem}
 footer a{color:var(--accent);text-decoration:none}
 .copyright{margin-top:8px;font-size:.7rem;opacity:.7}
@@ -74,16 +70,9 @@ function updateThemeIcon(){
   var b=document.getElementById('themeBtn');
   if(b)b.textContent=document.documentElement.getAttribute('data-theme')==='dark'?'☀️':'🌙';
 }
-function acceptTerms(){
-  try{localStorage.setItem('class-terms-accepted','1')}catch(e){}
-  var ok=document.getElementById('acceptOk');
-  if(ok)ok.style.display='block';
-  setTimeout(function(){location.href='index.html'},700);
-}
 document.addEventListener('DOMContentLoaded',function(){
   try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
   updateThemeIcon();
-  try{if(localStorage.getItem('class-terms-accepted')==='1')document.getElementById('acceptOk').style.display='block'}catch(e){}
 });
 </script>
 </head>
@@ -154,13 +143,6 @@ document.addEventListener('DOMContentLoaded',function(){
       <p>На сайте есть ссылки на сторонние ресурсы: сайт школы, электронный дневник, RuStore, Telegram, MAX, YouTube и другие. Переход по ним — ваше решение. Автор сайта не отвечает за содержание и доступность этих ресурсов.</p>
     </div>
 
-    <div class="card accept-card">
-      <h2 style="justify-content:center"><span class="ic">📌</span> Принятие условий</h2>
-      <p style="text-align:center">Продолжая пользоваться сайтом, вы понимаете, что он неофициальный, информация на нём может быть неточной или запоздалой, а использование внешних сервисов — ваше собственное решение.</p>
-      <button class="accept-btn" onclick="acceptTerms()">Принять и вернуться на главную</button>
-      <div class="accept-ok" id="acceptOk">✓ Условия приняты. Возвращаемся на главную…</div>
-      <div class="note" style="margin-top:18px;text-align:left">Этот сайт не является первоисточником информации — расписание и другие уведомления выкладываются вручную с задержкой и могут отличаться от официальных данных. Он создан для вашего удобства: уточняйте важную информацию у учителей и в электронном дневнике.</div>
-    </div>
   </div>
 </main>
 
