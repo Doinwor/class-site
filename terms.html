@@ -50,6 +50,9 @@ main{padding:20px 0 60px}
 .note{border-left:3px solid var(--amber);background:var(--surface);border-radius:12px;padding:14px 18px;font-size:.78rem;color:var(--text-muted);line-height:1.7}
 .back-form{display:inline-block;color:var(--text-muted);text-decoration:none;font-size:.76rem;font-weight:500;padding:9px 16px;border:1px solid var(--border);border-radius:10px;background:var(--surface);transition:.2s}
 .back-form:hover{color:var(--text);border-color:var(--accent);transform:translateY(-1px)}
+.nav.nav-locked a{opacity:.35;cursor:not-allowed}
+.nav.nav-locked a:hover{background:transparent;color:var(--text-muted)}
+.lock-note{max-width:640px;margin:0 auto 18px;padding:12px 16px;border-left:3px solid var(--amber);border-radius:12px;background:var(--surface);border-top:1px solid var(--border);border-right:1px solid var(--border);border-bottom:1px solid var(--border);font-size:.74rem;color:var(--text-muted);font-weight:300;line-height:1.7;text-align:left}
 footer{border-top:1px solid var(--border);padding:26px 20px 44px;text-align:center;color:var(--text-muted);font-size:.78rem}
 footer a{color:var(--accent);text-decoration:none}
 .copyright{margin-top:8px;font-size:.7rem;opacity:.7}
@@ -82,6 +85,24 @@ function updateThemeIcon(){
 document.addEventListener('DOMContentLoaded',function(){
   try{if(localStorage.getItem('class-theme')==='dark')document.documentElement.setAttribute('data-theme','dark')}catch(e){}
   updateThemeIcon();
+  if(/[?&]from=gate/.test(location.search)){
+    var nav=document.querySelector('.nav');
+    if(nav){
+      nav.classList.add('nav-locked');
+      nav.querySelectorAll('a').forEach(function(a){
+        a.setAttribute('aria-disabled','true');
+        a.setAttribute('tabindex','-1');
+        a.setAttribute('title','Сначала примите условия пользования');
+        a.addEventListener('click',function(e){e.preventDefault();});
+      });
+    }
+    var back=document.querySelector('.back-form');
+    if(back)back.setAttribute('href','index.html?gate=1');
+    var foot=document.querySelector('footer a[href="index.html"]');
+    if(foot)foot.setAttribute('href','index.html?gate=1');
+    var note=document.getElementById('lockNote');
+    if(note)note.hidden=false;
+  }
 });
 </script>
 </head>
@@ -107,6 +128,7 @@ document.addEventListener('DOMContentLoaded',function(){
   <div style="text-align:center;margin-bottom:18px">
     <a class="back-form" href="index.html">← Вернуться к форме</a>
   </div>
+  <div class="lock-note" id="lockNote" hidden>🔒 Остальные разделы откроются после принятия условий на главной странице. Вернитесь к форме, поставьте флажок и нажмите «Перейти на сайт».</div>
 
   <div class="doc">
     <div class="card">

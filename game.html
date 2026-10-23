@@ -55,7 +55,8 @@ header.top{position:sticky;top:0;z-index:50;background:color-mix(in srgb,var(--b
 .theme-btn:hover{transform:rotate(-12deg)}
 .ic-btn:hover{transform:translateY(-2px)}
 main{padding:10px 0 30px}
-.game-page{display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:22px}
+.game-page{display:flex;flex-direction:column;align-items:center;gap:16px;padding-top:22px;width:100%}
+.play{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;width:100%;max-width:520px}
 
 .hud{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;z-index:10;width:100%;max-width:520px}
 .pill{background:var(--surface);border:1px solid var(--border);border-radius:999px;padding:10px 18px;font-size:.78rem;font-weight:600;color:var(--text);box-shadow:0 4px 18px var(--card-shadow);display:flex;align-items:center;gap:8px;min-width:86px;justify-content:center;will-change:transform}
@@ -64,7 +65,7 @@ main{padding:10px 0 30px}
 @keyframes bump{0%{transform:scale(1)}40%{transform:scale(1.15)}100%{transform:scale(1)}}
 .hud .hbtns{display:flex;gap:8px}
 
-.stage{position:relative;width:100%;max-width:520px;border-radius:22px;overflow:hidden;border:1px solid var(--border);box-shadow:0 16px 46px var(--card-shadow);background:var(--surface);touch-action:none;user-select:none;-webkit-user-select:none}
+.stage{position:relative;width:100%;max-width:520px;border-radius:24px;overflow:hidden;border:1px solid var(--border);box-shadow:0 18px 50px var(--card-shadow),0 0 46px var(--accent-glow);background:var(--surface);touch-action:none;user-select:none;-webkit-user-select:none}
 .stage canvas{display:block;width:100%;height:auto}
 .overlay{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:20px;text-align:center;background:color-mix(in srgb,var(--surface) 74%,transparent);backdrop-filter:blur(8px);z-index:5;transition:opacity .25s;overflow:auto}
 .overlay.hidden{opacity:0;pointer-events:none}
@@ -84,10 +85,11 @@ main{padding:10px 0 30px}
 .btn-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center}
 .grad-bar{width:70px;height:4px;border-radius:99px;background:linear-gradient(90deg,var(--accent),var(--pink),var(--amber))}
 
-.dpad{display:none;grid-template-columns:repeat(3,54px);grid-template-rows:repeat(3,54px);gap:8px}
-@media(max-width:820px){.dpad{display:grid}}
-@media(hover:none){.hud .hbtns{display:none}}
-.dpad button{border:none;border-radius:16px;background:var(--surface-hover);color:var(--text);border:1px solid var(--border);font-size:1.25rem;cursor:pointer;box-shadow:0 4px 14px var(--card-shadow);transition:transform .1s;touch-action:manipulation}
+.dpad{display:none;grid-template-columns:repeat(3,56px);grid-template-rows:repeat(3,56px);gap:8px;padding:10px;border-radius:24px;background:var(--surface);border:1px solid var(--border);box-shadow:0 12px 34px var(--card-shadow)}
+@media(max-width:820px),(hover:none){.dpad{display:grid}}
+@media(hover:none){#pauBtn{display:none}}
+.dpad button{border:none;border-radius:16px;background:var(--surface-hover);color:var(--text);border:1px solid var(--border);font-size:1.25rem;cursor:pointer;box-shadow:0 4px 14px var(--card-shadow);transition:transform .1s,color .15s,border-color .15s;touch-action:manipulation}
+@media(hover:hover){.dpad button:not(.pc):hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}}
 .dpad button:active{background:linear-gradient(135deg,var(--accent),var(--pink));color:#fff;transform:scale(.9)}
 .dpad .pu{grid-column:2;grid-row:1}
 .dpad .pl{grid-column:1;grid-row:2}
@@ -101,17 +103,47 @@ footer{border-top:1px solid var(--border);padding:20px 20px calc(26px + env(safe
 @media(max-width:480px){
   .wrap{padding:10px}
   .nav{gap:3px;padding:10px 12px}
-  .brand{font-size:.85rem;margin:0;width:100%;text-align:center;padding-bottom:4px}
+  .brand{font-size:.85rem}
   .nav a{padding:8px 10px;font-size:.68rem;flex:1;text-align:center}
   .theme-btn{width:36px;height:36px;flex-shrink:0}
+  .ic-btn{width:34px;height:34px;font-size:.9rem}
+  header.top{position:static}
   .game-page{gap:12px;padding-top:14px}
+  .play{gap:12px}
   .pill{font-size:.66rem;padding:8px 12px;min-width:72px;gap:6px}
   .ov-title{font-size:1.3rem}
   .ov-score{font-size:1.9rem}
   .game-emoji{font-size:2.5rem}
   .btn{font-size:.72rem;padding:12px 28px}
-  .dpad{grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,50px);gap:7px}
+  .dpad{grid-template-columns:repeat(3,50px);grid-template-rows:repeat(3,50px);gap:7px;padding:9px}
   .btn-row{gap:8px}
+}
+@media(max-height:720px){
+  .overlay{gap:10px;padding:14px}
+  .game-emoji{font-size:2.2rem}
+  .ov-title{font-size:1.3rem}
+  .howto{font-size:.64rem;line-height:1.7}
+  .btn{padding:12px 28px}
+  .key-hint{display:none}
+}
+@media(max-height:560px) and (orientation:landscape){
+  header.top .nav{padding:6px 12px}
+  .wrap{padding:6px}
+  .brand{font-size:.8rem}
+  .nav a{padding:6px 10px;font-size:.72rem}
+  .theme-btn,.ic-btn{width:32px;height:32px;font-size:.85rem}
+  .game-page{padding-top:4px;gap:8px}
+  .hud{max-width:none;gap:6px}
+  .pill{padding:5px 10px;font-size:.62rem;min-width:auto}
+  .play{flex-direction:row;max-width:none;gap:10px}
+  .dpad{grid-template-columns:repeat(3,46px);grid-template-rows:repeat(3,46px);gap:6px;padding:8px}
+  .overlay{gap:8px;padding:10px}
+  .game-emoji{font-size:2rem}
+  .ov-title{font-size:1.15rem}
+  .howto{font-size:.6rem;line-height:1.55}
+  .key-hint{display:none}
+  .btn{padding:10px 22px;font-size:.7rem}
+  footer{display:none}
 }
 </style>
 </head>
@@ -139,6 +171,7 @@ footer{border-top:1px solid var(--border);padding:20px 20px calc(26px + env(safe
       </div>
     </div>
 
+    <div class="play">
     <div class="stage" id="stage">
       <canvas id="game"></canvas>
 
@@ -186,6 +219,7 @@ footer{border-top:1px solid var(--border);padding:20px 20px calc(26px + env(safe
       <button class="pc" data-dir="pause">⏸</button>
       <button class="pr" data-dir="right">▶</button>
       <button class="pd" data-dir="down">▼</button>
+    </div>
     </div>
 
   </main>
@@ -594,22 +628,33 @@ document.addEventListener('DOMContentLoaded',function(){
 });
 window.addEventListener('resize',scheduleFit);
 window.addEventListener('orientationchange',scheduleFit);
+if(window.visualViewport)window.visualViewport.addEventListener('resize',scheduleFit);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(function(){fitStage()});
 var fitT=0;
 function scheduleFit(){clearTimeout(fitT);fitT=setTimeout(fitStage,120)}
 function fitStage(){
-  var nav=document.querySelector('header.top');
-  var hud=document.querySelector('.hud');
+  if(!stage)return;
+  var play=document.querySelector('.play');
+  var page=document.querySelector('.game-page');
   var dpad=document.querySelector('.dpad');
-  var wrap=document.querySelector('.wrap');
-  var headH=nav?nav.offsetHeight:0;
-  var hudH=hud?hud.offsetHeight:0;
-  var dpadH=dpad&&getComputedStyle(dpad).display==='grid'?dpad.offsetHeight:0;
-  var wrapTop=wrap?wrap.offsetTop:0;
-  var avail=(window.innerHeight||document.documentElement.clientHeight)-headH-hudH-dpadH-wrapTop-30;
-  var pr=wrap?wrap.getBoundingClientRect().width:(window.innerWidth-20);
-  var cssW=Math.min(pr,520);
-  var w=Math.max(230,Math.min(cssW,avail*(BOARD_W/BOARD_H)));
-  stage.style.width=w+'px';
+  var vv=window.visualViewport;
+  var vh=(vv&&vv.height)||window.innerHeight||document.documentElement.clientHeight;
+  var dpadVisible=dpad&&getComputedStyle(dpad).display!=='none';
+  var row=play&&getComputedStyle(play).flexDirection==='row';
+  var area=play||stage;
+  var pageW=page?page.getBoundingClientRect().width:Math.min(520,document.documentElement.clientWidth-20);
+  var maxW=Math.min(520,pageW);
+  var availH=vh-area.getBoundingClientRect().top-24;
+  var aspect=BOARD_W/BOARD_H;
+  if(row&&dpadVisible){
+    maxW=Math.min(maxW,pageW-(dpad.getBoundingClientRect().width+14));
+  }else if(dpadVisible){
+    availH-=dpad.getBoundingClientRect().height+14;
+  }
+  maxW=Math.max(140,maxW);
+  var w=Math.min(maxW,Math.max(120,availH)*aspect);
+  if(!isFinite(w)||w<=0)w=maxW;
+  stage.style.width=Math.round(w)+'px';
 }
 function onVisibility(){if(document.hidden&&state==='playing')togglePause()}
 document.addEventListener('visibilitychange',onVisibility);
