@@ -550,15 +550,7 @@ document.addEventListener('DOMContentLoaded',function(){
   setInterval(function(){refreshHolidayLabel();checkHolidayExpiry();},1000);
 var io=new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('visible');io.unobserve(en.target)}})},{threshold:.1});
   document.querySelectorAll('.reveal').forEach(function(el,i){el.style.transitionDelay=((i%3)*80)+'ms';io.observe(el)});
-  var dnClicks=0,dnLast=0;
-  var dn=document.querySelector('.dnevnik-ic');
-  if(dn)dn.addEventListener('click',function(){
-    var now=Date.now();
-    if(now-dnLast>1000)dnClicks=0;
-    dnLast=now;dnClicks++;
-    dn.classList.remove('pop');void dn.offsetWidth;dn.classList.add('pop');
-    if(dnClicks>=3){dnClicks=0;location.href='game.html'}
-  });
+
   var vidOv=document.getElementById('schedVid');
   var vidEl=document.getElementById('schedVideo');
   var vidClose=document.getElementById('vidClose');
